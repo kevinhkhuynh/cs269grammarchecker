@@ -1,21 +1,12 @@
-This is an earlier version of OpenNMT used for training, tuning, and testing the core models with diffs in the paper "Adapting Sequence Models for Sentence Correction", EMNLP 2017.
-
-Note that an option -tag_weight for translate.lua allows an additive weight to be applied to the four diff tags.
+This project is a reimplementation of "Sentence-Level Grammatical Error Identification as Sequence-to-Sequence Correction" using Torch (only for tokenization), PyTorch, and OpenNMT-py.
 
 # OpenNMT: Open-Source Neural Machine Translation
 
 The most recent version and documentation for OpenNMT is available here: https://github.com/opennmt/opennmt
 
-## Installation
-
-OpenNMT only requires a vanilla Torch install with few dependencies.
-
-### Dependencies
-
-* `nn`
-* `nngraph`
-* `tds`
-* `penlight`
+* `Torch`
+* `PyTorch`
+* `bit32`
 
 GPU training requires:
 
@@ -28,19 +19,19 @@ Multi-GPU training additionally requires:
 
 ## Quickstart
 
-OpenNMT consists of three commands:
+How to create the word model
 
-1) Preprocess the data.
+1) Download the data set (Training data, development data, and Test data (with edits): http://textmining.lt/aesw/aesw2016down.html
 
-```th preprocess.lua -train_src data/src-train.txt -train_tgt data/tgt-train.txt -valid_src data/src-val.txt -valid_tgt data/tgt-val.txt -save_data data/demo```
+2) Extract the three files and copy them as data/train.xml, data/dev.xml, and data/testwithedits.xml
 
-2) Train the model.
+3) Tokenize the data:
 
-```th train.lua -data data/demo-train.t7 -save_model model```
+```./xml_to_tok```
 
-3) Translate sentences.
+4) Preprocess the data, train the model, translate sentences, and evaluate.
 
-```th translate.lua -model model_final.t7 -src data/src-test.txt -tag_weight 0.0 -output pred.txt```
+```./create_word_model```
 
 ## OpenNMT Citation
 
