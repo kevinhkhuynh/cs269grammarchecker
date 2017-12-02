@@ -17,3 +17,4 @@ th tools/tokenize.lua <data/src_dev.txt> data/src_dev.tok
 th tools/tokenize.lua <data/tgt_dev.txt> data/tgt_dev.tok
 th tools/tokenize.lua <data/src_testwithedit.txt> data/src_testwithedit.tok
 th tools/tokenize.lua <data/tgt_testwithedit.txt> data/tgt_testwithedit.tok
+rm data/src*.xml data/tgt*.xml data/*.txt
