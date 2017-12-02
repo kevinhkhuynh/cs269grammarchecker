@@ -1,12 +1,21 @@
-This project is a reimplementation of "Sentence-Level Grammatical Error Identification as Sequence-to-Sequence Correction" using Torch (only for tokenization), PyTorch, and OpenNMT-py.
+This is an earlier version of OpenNMT used for training, tuning, and testing the core models with diffs in the paper "Adapting Sequence Models for Sentence Correction", EMNLP 2017.
 
-The most recent version and documentation for OpenNMT is available here: https://github.com/OpenNMT/OpenNMT-py
+Note that an option -tag_weight for translate.lua allows an additive weight to be applied to the four diff tags.
 
-Dependencies:
+# OpenNMT: Open-Source Neural Machine Translation
 
-* `Torch`
-* `bit32`
-* `PyTorch`
+The most recent version and documentation for OpenNMT is available here: https://github.com/opennmt/opennmt
+
+## Installation
+
+OpenNMT only requires a vanilla Torch install with few dependencies.
+
+### Dependencies
+
+* `nn`
+* `nngraph`
+* `tds`
+* `penlight`
 
 GPU training requires:
 
@@ -17,18 +26,32 @@ Multi-GPU training additionally requires:
 
 * `threads`
 
-## Instructions
+## Quickstart
 
-How to create the word model:
+OpenNMT consists of three commands:
 
-1) Download the data set (Training data, development data, and Test data (with edits): http://textmining.lt/aesw/aesw2016down.html
+1) Preprocess the data.
 
-2) Extract the three files and copy them as data/train.xml, data/dev.xml, and data/testwithedits.xml
+```th preprocess.lua -train_src data/src-train.txt -train_tgt data/tgt-train.txt -valid_src data/src-val.txt -valid_tgt data/tgt-val.txt -save_data data/demo```
 
-3) Tokenize the data:
+2) Train the model.
 
-```./xml_to_tok```
+```th train.lua -data data/demo-train.t7 -save_model model```
 
-4) Preprocess the data, train the model, translate sentences, and evaluate.
+3) Translate sentences.
 
-```./create_word_model```
+```th translate.lua -model model_final.t7 -src data/src-test.txt -tag_weight 0.0 -output pred.txt```
+
+## OpenNMT Citation
+
+A <a href="https://arxiv.org/abs/1701.02810">technical report</a> on OpenNMT is available. If you use the system for academic work, please cite:
+
+```
+    @ARTICLE{2017opennmt,
+         author = { {Klein}, G. and {Kim}, Y. and {Deng}, Y.
+                    and {Senellart}, J. and {Rush}, A.~M.},
+         title = "{OpenNMT: Open-Source Toolkit
+                   for Neural Machine Translation}",
+         journal = {ArXiv e-prints},
+         eprint = {1701.02810} }
+```
