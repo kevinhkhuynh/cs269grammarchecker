@@ -19,6 +19,10 @@ Multi-GPU training additionally requires:
 
 ## Instructions
 
+Clone repo:
+
+git clone --recursive https://github.com/rollbackcc/cs269grammarchecker.git
+
 How to create the word model:
 
 1) Download the data set (Training data, development data, and Test data (with edits): http://textmining.lt/aesw/aesw2016down.html
