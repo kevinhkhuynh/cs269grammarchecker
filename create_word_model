@@ -2,4 +2,4 @@
 python OpenNMT-py/preprocess.py -train_src data/src_train.tok -train_tgt data/tgt_train.tok -valid_src data/src_dev.tok -valid_tgt data/tgt_dev.tok -save_data data/pre_processed_data -src_vocab_size 50000 -tgt_vocab_size 50000 -src_seq_length 50 -tgt_seq_length 50 -shuffle 1 -seed 3435 -report_every 100000
 python OpenNMT-py/train.py -data data/pre_processed_data -save_model data/word-model -word_vec_size 500 -feat_merge 'concat' -feat_vec_exponent 0.7 -feat_vec_size 20 -input_feed 1 -layers 4 -rnn_size 1000 -rnn_type 'LSTM' -gpuid 0 -epochs 13 -optim 'sgd' -param_init 0.1 -batch_size 64 -learning_rate 1 -learning_rate_decay 0.5 -start_decay_at 9 -max_grad_norm 5 -dropout 0.3 -report_every 50 -seed 3435
 python OpenNMT-py/translate.py -model data/word-model -src data/src_test.tok -output data/predicted_test.tok -beam_size 10 -max_sent_length 50 -gpu 0
-perl OpenNMT-py/tools/multi-bleu.perl data/tgt_test.tok < predicted_test.tok
+perl OpenNMT-py/tools/multi-bleu.perl data/tgt_test.tok < data/predicted_test.tok
