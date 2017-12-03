@@ -8,10 +8,16 @@ sed -n 's:.*<sentence.*>\(.*\)</sentence>.*:\1:p' data/src_dev.xml > data/src_de
 sed -n 's:.*<sentence sid=".*">\(.*\)</sentence>.*:\1:p' data/dev.xml > data/tgt_dev.txt
 sed -n 's:.*<sentence.*>\(.*\)</sentence>.*:\1:p' data/src_test.xml > data/src_test.txt
 sed -n 's:.*<sentence sid=".*">\(.*\)</sentence>.*:\1:p' data/test.xml > data/tgt_test.txt
+grep -E '.*<ins>.*|.*<del>.*' data/tgt_train.txt > data/tgt_train_sample.txt 
+diff data/tgt_train_sample.txt data/tgt_train.txt > data/temp1.txt
+shuf -n 200000 data/temp1.txt >> data/tgt_train_sample.txt
+python ./post_processing/tags_to_sentences_src.py -i "data/tgt_train_sample.txt" -o "data/src_train_sample.txt"
 th tools/tokenize.lua <data/src_train.txt> data/src_train.tok
 th tools/tokenize.lua <data/tgt_train.txt> data/tgt_train.tok
 th tools/tokenize.lua <data/src_dev.txt> data/src_dev.tok
 th tools/tokenize.lua <data/tgt_dev.txt> data/tgt_dev.tok
 th tools/tokenize.lua <data/src_test.txt> data/src_test.tok
 th tools/tokenize.lua <data/tgt_test.txt> data/tgt_test.tok
+th tools/tokenize.lua <data/src_train_sample.txt> data/src_train_sample.tok
+th tools/tokenize.lua <data/tgt_train_sample.txt> data/tgt_train_sample.tok
 rm data/src*.xml data/*.txt

@@ -7,6 +7,7 @@ Dependencies:
 * `Torch`
 * `bit32`
 * `PyTorch`
+* `coreutils`
 
 GPU training requires:
 
