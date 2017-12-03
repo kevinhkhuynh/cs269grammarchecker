@@ -24,7 +24,7 @@ Clone repo:
 
 git clone --recursive https://github.com/rollbackcc/cs269grammarchecker.git
 
-How to create the word model:
+How to initialize the data-set:
 
 1) Download the data set (Training data, development data, and Test data (with edits): http://textmining.lt/aesw/aesw2016down.html
 
@@ -34,6 +34,14 @@ How to create the word model:
 
 ```./xml_to_tok```
 
-4) Preprocess the data, train the model, translate sentences, and evaluate.
+How to create the Word-All Model:
+
+1) Preprocess the data, train the model, translate sentences, and evaluate.
 
 ```./create_word_model```
+
+How to create the Word-Sample Model:
+
+1) Preprocess the data, train the model, translate sentences, and evaluate.
+
+```./create_word_sample_model```
