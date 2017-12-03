@@ -1,20 +1,17 @@
 #! /bin/sh
 python ./post_processing/tags_to_sentences_src.py -i "data/train.xml" -o "data/src_train.xml"
-python ./post_processing/tags_to_sentences.py -i "data/train.xml" -o "data/tgt_train.xml"
 python ./post_processing/tags_to_sentences_src.py -i "data/dev.xml" -o "data/src_dev.xml"
-python ./post_processing/tags_to_sentences.py -i "data/dev.xml" -o "data/tgt_dev.xml"
 python ./post_processing/tags_to_sentences_src.py -i "data/test.xml" -o "data/src_test.xml"
-python ./post_processing/tags_to_sentences.py -i "data/test.xml" -o "data/tgt_test.xml"
 sed -n 's:.*<sentence.*>\(.*\)</sentence>.*:\1:p' data/src_train.xml > data/src_train.txt
-sed -n 's:.*<sentence.*>\(.*\)</sentence>.*:\1:p' data/tgt_train.xml > data/tgt_train.txt
+sed -n 's:.*<sentence sid=".*">\(.*\)</sentence>.*:\1:p' data/train.xml > data/tgt_train.txt
 sed -n 's:.*<sentence.*>\(.*\)</sentence>.*:\1:p' data/src_dev.xml > data/src_dev.txt
-sed -n 's:.*<sentence.*>\(.*\)</sentence>.*:\1:p' data/tgt_dev.xml > data/tgt_dev.txt
+sed -n 's:.*<sentence sid=".*">\(.*\)</sentence>.*:\1:p' data/dev.xml > data/tgt_dev.txt
 sed -n 's:.*<sentence.*>\(.*\)</sentence>.*:\1:p' data/src_test.xml > data/src_test.txt
-sed -n 's:.*<sentence.*>\(.*\)</sentence>.*:\1:p' data/tgt_test.xml > data/tgt_test.txt
+sed -n 's:.*<sentence sid=".*">\(.*\)</sentence>.*:\1:p' data/test.xml > data/tgt_test.txt
 th tools/tokenize.lua <data/src_train.txt> data/src_train.tok
 th tools/tokenize.lua <data/tgt_train.txt> data/tgt_train.tok
 th tools/tokenize.lua <data/src_dev.txt> data/src_dev.tok
 th tools/tokenize.lua <data/tgt_dev.txt> data/tgt_dev.tok
 th tools/tokenize.lua <data/src_test.txt> data/src_test.tok
 th tools/tokenize.lua <data/tgt_test.txt> data/tgt_test.tok
-rm data/src*.xml data/tgt*.xml data/*.txt
+rm data/src*.xml data/*.txt
