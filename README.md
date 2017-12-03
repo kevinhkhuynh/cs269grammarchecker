@@ -20,9 +20,11 @@ Multi-GPU training additionally requires:
 
 ## Instructions
 
-Clone repo:
+Set up repo and Open-NMT-py:
 
-git clone --recursive https://github.com/rollbackcc/cs269grammarchecker.git
+1) git clone --recursive https://github.com/rollbackcc/cs269grammarchecker.git
+
+3) pip install -r OpenNMT-py/requirements.txt
 
 How to initialize the data-set:
 
