@@ -23,7 +23,7 @@ How to create the word model:
 
 1) Download the data set (Training data, development data, and Test data (with edits): http://textmining.lt/aesw/aesw2016down.html
 
-2) Extract the three files and copy them as data/train.xml, data/dev.xml, and data/testwithedits.xml
+2) Extract the three files and copy them as data/train.xml, data/dev.xml, and data/test.xml
 
 3) Tokenize the data:
 
