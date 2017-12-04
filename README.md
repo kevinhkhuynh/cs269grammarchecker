@@ -1,5 +1,7 @@
 This project is a reimplementation of "Sentence-Level Grammatical Error Identification as Sequence-to-Sequence Correction" using Torch (only for tokenization), PyTorch, and OpenNMT-py.
 
+Our literature survey can be accessed here: https://sites.google.com/g.ucla.edu/cs269grammarchecker/home
+
 The most recent version and documentation for OpenNMT is available here: https://github.com/OpenNMT/OpenNMT-py
 
 Dependencies:
